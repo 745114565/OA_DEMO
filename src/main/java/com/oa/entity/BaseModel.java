@@ -12,9 +12,12 @@ import java.util.Date;
 @MappedSuperclass
 public class BaseModel implements Serializable {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     public Long getId() {
         return id;
@@ -23,5 +26,6 @@ public class BaseModel implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
 
 }

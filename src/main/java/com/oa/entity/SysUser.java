@@ -17,6 +17,7 @@ import java.util.List;
 @Entity
 public class SysUser extends BaseModel implements UserDetails {
 
+    private static final long serialVersionUID = 8309694618829089529L;
 
     @Column(nullable = false)
     private String username;
