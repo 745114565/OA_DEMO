@@ -2,6 +2,7 @@ package com.oa.controller;
 
 import com.oa.entity.SysUser;
 import com.oa.service.Impl.UserServiceImpl;
+import org.apache.commons.collections4.Get;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,6 +29,15 @@ public class MainController {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String index() {
         return "index";
+    }
+
+    /**
+     * 返回用户注册页面
+     * @return
+     */
+    @RequestMapping(value = "/register_page",method = RequestMethod.GET)
+    public String register_page() {
+        return "register_page";
     }
 
     /**

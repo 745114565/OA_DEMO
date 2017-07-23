@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +20,17 @@ public class UserController {
 
     @Autowired
     UserServiceImpl userService;
+
+    /**
+     * 增加用户
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/create",method = RequestMethod.POST)
+    public String create(HttpServletRequest request) {
+        userService.create(request);
+        return "redirect:/login_page";
+    }
 
     /**
      * 分页查找所有用户信息
@@ -34,7 +47,6 @@ public class UserController {
         return "findalluser_page";
     }
 
-
     /**
      * 查找id为id的用户信息
      * @param id
@@ -43,11 +55,33 @@ public class UserController {
      */
     @RequestMapping(value = "/findOne/{id}",method = RequestMethod.GET)
     public String findOne(@PathVariable Long id,ModelMap modelMap) {
-        System.out.println("是否调用findOne");
+        System.out.println("是否调用findOne-"+id);
         modelMap.addAttribute("userList",userService.findOne(id));
-        return "home";
+        return "edituser_page";
     }
 
+    /**
+     * 用户更新操作
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    public String update (SysUser user) {
+        user.setUpdate_time(new Date());
+        userService.update(user);
+        return "redirect:/users/index";
+    }
+
+    /**
+     * 删除操作
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
+    public String delete(@PathVariable Long id) {
+        userService.destroy(id);
+        return "redirect:/users/index";
+    }
 
     /**
      * 建树 返回json数据

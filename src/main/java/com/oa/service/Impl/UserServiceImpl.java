@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import sun.applet.Main;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,6 +53,8 @@ public class UserServiceImpl implements IUserService {
         SysUser user = new SysUser();
         user.setUsername(request.getParameter("username"));
         user.setPassword(request.getParameter("password"));
+        user.setUpdate_time(new Date());
+        user.setText("xx部员工");
         user.setRoles(sysRoles_user);
         //保存
         repository.save(user);

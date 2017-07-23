@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>所有用户</title>
+    <title>修改页面</title>
 
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
@@ -19,27 +19,23 @@
 </head>
 <body>
 <div class="container">
-    <h1>用户列表</h1>
+    <h1>用户信息</h1>
     <hr/>
-    <h3>所有用户 <a href="#" type="button" class="btn btn-primary btn-sm">添加</a></h3>
 
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>用户id</th>
-            <th>用户名字</th>
-            <th>用户职位</th>
-            <th>操作</th>
-        </tr>
-        <tr th:each="aaa:${userList}">
-            <td th:text="${aaa.id}"></td>
-            <td th:text="${aaa.username}"></td>
-            <td th:text="${aaa.text}"></td>
-            <td>
-                <a th:href="@{'/users/findOne/'+${aaa.id}}">编辑</a>
-                <a th:href="@{'/users/delete/'+${aaa.id}}">删除</a>
-            </td>
-        </tr>
-    </table>
+    <!-- 如果用户列表非空 -->
+    <div th:each="aaa:${userList}">
+    <form action="/users/update" method="post">
+        <input type="hidden" name="id" th:value="${aaa.id}"/>
+        <input type="hidden" name="rid" th:value="${aaa.rid}"/>
+        <input type="hidden" name="pid" th:value="${aaa.pid}"/>
+
+        职位：<input type="text" name="text" th:value="${aaa.text}"/>
+        昵称：<input type="text" name="username" th:value="${aaa.username}"/>
+        密码：<input type="text" name="password" th:value="${aaa.password}"/>
+
+        <button type="submit">修改</button>
+    </form>
+    </div>
 </div>
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
