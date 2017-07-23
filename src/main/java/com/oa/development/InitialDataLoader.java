@@ -19,7 +19,8 @@ import java.util.List;
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
-    boolean alreadySetup = false;
+    //启动服务器不生成数据时请设置为true,自动生成数据请设置为false
+    boolean alreadySetup = true;
     @Autowired
     SysUserRepository userRepository;
     @Autowired

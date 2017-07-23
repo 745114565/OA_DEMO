@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +23,9 @@ public class SysUser extends BaseModel implements UserDetails {
 
     @Column(nullable = false)
     private String password;
+
+    @Column
+    private Date update_time;
 
     @Column
     private String rid;
@@ -61,7 +65,15 @@ public class SysUser extends BaseModel implements UserDetails {
         this.password = password;
     }
 
-    @ExcelResources(title = "用户根节点",order = 3)
+    @ExcelResources(title = "用户最后登陆时间",order = 3)
+    public Date getUpdate_time() {
+        return update_time;
+    }
+
+    public void setUpdate_time(Date update_time) {
+        this.update_time = update_time;
+    }
+
     public String getRid() {
         return rid;
     }
@@ -70,7 +82,6 @@ public class SysUser extends BaseModel implements UserDetails {
         this.rid = rid;
     }
 
-    @ExcelResources(title = "用户父节点",order = 4)
     public String getPid() {
         return pid;
     }
@@ -79,7 +90,7 @@ public class SysUser extends BaseModel implements UserDetails {
         this.pid = pid;
     }
 
-    @ExcelResources(title = "用户职称",order = 5)
+    @ExcelResources(title = "用户职称",order = 4)
     public String getText() {
         return text;
     }
@@ -88,7 +99,6 @@ public class SysUser extends BaseModel implements UserDetails {
         this.text = text;
     }
 
-    @ExcelResources(title = "用户下属",order = 6)
     public List<SysUser> getChildren() {
         return children;
     }
@@ -97,7 +107,7 @@ public class SysUser extends BaseModel implements UserDetails {
         this.children = children;
     }
 
-    @ExcelResources(title = "用户角色",order = 7)
+    @ExcelResources(title = "用户角色",order = 5)
     public List<SysRole> getRoles() {
         return roles;
     }
@@ -141,6 +151,7 @@ public class SysUser extends BaseModel implements UserDetails {
         return "SysUser{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", update_time=" + update_time +
                 ", rid='" + rid + '\'' +
                 ", pid='" + pid + '\'' +
                 ", text='" + text + '\'' +
@@ -148,5 +159,4 @@ public class SysUser extends BaseModel implements UserDetails {
                 ", roles=" + roles +
                 '}';
     }
-
 }
