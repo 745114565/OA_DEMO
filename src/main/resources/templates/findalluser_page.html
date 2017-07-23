@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>find all user page</title>
+</head>
+<body>
+<div>
+    <h1>测试查找信息</h1>
+    <table>
+        <tbody>
+        <tr th:each="aaa:${userList}">
+            <td th:text="${aaa.username}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

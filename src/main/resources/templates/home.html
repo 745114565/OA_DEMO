@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <!--<script language="JavaScript">-->
+        <!--function findalluser() {-->
+            <!--$.ajax({        //这是$.ajax()方法-->
+                <!--type: "GET",-->
+                <!--url: "/users/index",-->
+                <!--data: $('#myform').serialize(),//ajax提交表单-->
+                <!--dataType: "html",//接受响应的数据类型，我的响应是一个页面，所以这里用“html”-->
+                <!--success: function (data) {-->
+                    <!--$('#mydiv').html(data);//我把响应的页面被放到一个div中显示-->
+
+                <!--}-->
+            <!--})-->
+        <!--}-->
+    <!--</script>-->
+</head>
+<body>
+<div>
+    <h1>当前用户登陆信息</h1>
+    <table>
+        <tbody>
+        <tr th:each="mmm:${myself}">
+            <td th:text="${mmm.id}"></td>
+            <td th:text="${mmm.username}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<hr/>
+<div class="container">
+    <div class="starter-template">
+        <!--<h1 th:text="${msg.title}"></h1>-->
+        <!--<p class="bg-primary" th:text="${msg.content}"></p>-->
+        <h1>测试页面</h1>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <a href="＃">admin能看得到进入管理后台的入口!</a>
+        </div>
+        <div sec:authorize="hasAnyRole('ROLE_USER')">
+            <a href="＃">user能看得到进入系统!</a>
+        </div>
+        <div sec:authorize="hasAnyRole('ROLE_MANAGER')">
+            <a href="＃">manager能看得到进入系统!</a>
+        </div>
+
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" class="btn btn-primary" value="注销"/>
+        </form>
+    </div>
+</div>
+<hr/>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <form action="/users/index">
+        <input type="submit" value="查询所有用户信息"/>
+    </form>
+</div>
+
+<div sec:authorize="permitAll()">
+    <form action="#">
+        <input type="submit" value="公告"/>
+    </form>
+</div>
+
+<div sec:authorize="hasAnyRole('ROLE_ADMIN','RLOE_MANAGER')">
+    <form>
+        <input type="button" value="员工架构图"/>
+    </form>
+</div>
+</body>
+</html>
