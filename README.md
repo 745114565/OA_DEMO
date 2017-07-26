@@ -1,4 +1,4 @@
-# Spring boot + Spring data + Spring security + quartz + POI  技术实现DEMO
+# Spring boot + Spring data + Spring security + quartz + POI +Ztree  技术实现DEMO
        
        security实现登陆赋权并运用sec:authorize控制标签(标签例子在home.html)
        
@@ -14,6 +14,8 @@
        自定义注解(例子在ExcelResources)
        
        SpringData PagingAndSortingRepository 分页
+       
+       Ztree实现页面在test和test2(test是请求后台我生成的树,test2是zTree的Demo)
        
         
        
