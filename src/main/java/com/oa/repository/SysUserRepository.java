@@ -1,7 +1,6 @@
 package com.oa.repository;
 
 import com.oa.entity.SysUser;
-
 import java.util.List;
 
 /**

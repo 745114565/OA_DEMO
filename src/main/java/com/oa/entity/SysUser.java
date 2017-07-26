@@ -37,10 +37,10 @@ public class SysUser extends BaseModel implements UserDetails {
     @Column
     private String text;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<SysUser> children;   //用于存储子节点
 
-    @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<SysRole> roles;
 
     public SysUser(){

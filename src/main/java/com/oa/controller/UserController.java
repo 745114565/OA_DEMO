@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -92,8 +94,12 @@ public class UserController {
     public List<SysUser> getTree() {
         List<SysUser> root = userService.findByRid("0");  //获取根节点（获取的值存到list中）
         net.sf.json.JSONArray jsonArray = net.sf.json.JSONArray.fromObject(buildTree(root));
+        System.out.println("------------toString之前的输出------------");
         System.out.println(jsonArray.toString());
-        return buildTree(root);
+        System.out.println("------------toString之后的输出------------");
+        List<SysUser> tree = buildTree(root);
+
+        return tree;
     }
 
     public List<SysUser> buildTree(List<SysUser> root) {
@@ -105,4 +111,9 @@ public class UserController {
         return root;
     }
 
+    @RequestMapping(value = "/findoneRole",method = RequestMethod.GET)
+    public String findoneRole(ModelMap modelMap) {
+        modelMap.addAttribute("userList",userService.findoneRole());
+        return "ztree_page";
+    }
 }

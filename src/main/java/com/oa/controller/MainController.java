@@ -79,4 +79,18 @@ public class MainController {
         return "ztree_page";
     }
 
+    /**
+     * 测试页面
+     * @return
+     */
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public String test() {
+        return "test";
+    }
+
+    @RequestMapping(value = "/test2",method = RequestMethod.GET)
+    public String test2() {
+        return "test2";
+    }
+
 }

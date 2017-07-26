@@ -64,8 +64,8 @@
 </div>
 
 <div sec:authorize="hasAnyRole('ROLE_ADMIN','RLOE_MANAGER')">
-    <form>
-        <input type="button" value="员工架构图"/>
+    <form action="/users/findoneRole" method="get">
+        <input type="submit" value="总经理,经理可见,测试redis"/>
     </form>
 </div>
 </body>

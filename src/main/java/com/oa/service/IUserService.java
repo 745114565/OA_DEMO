@@ -1,5 +1,6 @@
 package com.oa.service;
 
+import com.oa.entity.SysRole;
 import com.oa.entity.SysUser;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,5 +26,7 @@ public interface IUserService {
     public List<SysUser> findByPid(String pid);
 
     public List<SysUser> findByRid(String rid);
+
+    public SysRole findoneRole();
 
 }

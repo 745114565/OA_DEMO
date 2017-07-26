@@ -8,8 +8,9 @@ import com.oa.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import sun.applet.Main;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -29,6 +30,7 @@ public class UserServiceImpl implements IUserService {
     SysRoleRepository roleRepository;
 
     @Override
+//    @Cacheable(value = "usercache",keyGenerator = "wiselyKeyGenerator")
     public Iterable<SysUser> index(int page, int size) {
         Page<SysUser> users = repository.findAll(new PageRequest(page,size));
         List<SysUser> userList = new LinkedList<>();
@@ -39,6 +41,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+//    @Cacheable(value = "usercache",keyGenerator = "wiselyKeyGenerator")
     public SysUser findOne(Long id) {
         return repository.findOne(id);
     }
@@ -83,5 +86,12 @@ public class UserServiceImpl implements IUserService {
     @Override
     public List<SysUser> findByRid(String rid) {
         return repository.findByRid(rid);
+    }
+
+    @Cacheable(value = "rolecache",keyGenerator = "wiselyKeyGenerator")
+    public SysRole findoneRole() {
+        System.out.println("----------是否有调用到测试redis方法----------");
+        System.out.println("----------如果刷新不可见此消息则已经是从redis中加载出数据----------");
+        return roleRepository.findOne(1L);
     }
 }
