@@ -1,6 +1,9 @@
-# Spring boot + Spring data + Spring security + quartz + POI +Ztree  技术实现DEMO
+# Spring boot + Spring data + Spring security + redis + quartz + POI +Ztree  技术实现DEMO
        
        security实现登陆赋权并运用sec:authorize控制标签(标签例子在home.html)
+       
+       redis利用注解@Cacheable实现控制,相关实现在UserServiceImpl里面(也可用在Controller上,其他地方也行)
+       配置好redis相关配置和写一个Config类就可以用了.
        
        quartz实现定时任务(动态设置,比如从数据库中取出来)
        
