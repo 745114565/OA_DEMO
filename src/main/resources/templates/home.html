@@ -7,7 +7,7 @@
 
     <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
 
-    <script type="text/javascript" src="/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="js/jquery.ztree.core.js"></script>
 
     <SCRIPT LANGUAGE="JavaScript">
         var zTreeObj1;
@@ -22,13 +22,13 @@
         // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
         var zNodes1 = [
             {name:"公司公告", open:true, children:[
-                {name:"第一季度",url:"/login_page"}, {name:"第二季度"}, {name:"第三季度"}]}
+                {name:"第一季度"}, {name:"第二季度"}, {name:"第三季度"}]}
         ];
         var zNodes2 = [
-            {name:"员工架构图", open:true,url:"/test"},
+            {name:"员工架构图", open:true, url:"/test"},
         ];
         var zNodes3 = [
-            {name:"员工管理", open:true,url:"/users/index"},
+            {name:"员工管理", open:true, url:"/users/index"},
         ];
         var zNodes4 = [
             {name:"角色管理", open:true},
@@ -44,7 +44,6 @@
             zTreeObj5 = $.fn.zTree.init($("#treeDemo5"), setting, zNodes5);
         });
     </SCRIPT>
-
 </head>
 <body>
 <div>

@@ -8,7 +8,9 @@
 
     <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
 
-    <script type="text/javascript" src="/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="js/jquery.ztree.core.js"></script>
+
+    <script type="text/javascript" src="js/jquery.ztree.excheck.js"></script>
 
     <SCRIPT LANGUAGE="JavaScript">
         $(function(){
@@ -36,6 +38,11 @@
                                 children:"children",
                                 url:"xUrl"
                             }
+                        },
+                        check: {
+                            enable: true,
+                            chkStyle: "checkbox",
+                            chkboxType: { "Y": "p", "N": "s" }
                         }
                     };
                     // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解
