@@ -17,12 +17,24 @@
                 dataType:"json",
                 url:'/users/getTree.do',
                 success:function(data){
+
+                    var str = JSON.stringify(data, undefined, 2);
+                    document.getElementById('output').innerHTML = str;
+
                     var zTreeObj;
                     // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
                     var setting = {
                         data: {
+                            simpleData:{
+                                enable: true,
+                                idKey: "rid",
+                                pIdKey: "pid",
+                                rootPId: -1
+                            },
                             key: {
-                                name: "text"
+                                name: "text",
+                                children:"children",
+                                url:"xUrl"
                             }
                         }
                     };
@@ -39,8 +51,11 @@
 </HEAD>
 <BODY>
 <h1>ztree test页面</h1>
+<hr/>
 <div>
     <ul id="tree" class="ztree"></ul>
 </div>
+<hr/>
+<pre id="output"></pre>
 </BODY>
 </HTML>

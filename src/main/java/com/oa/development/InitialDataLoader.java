@@ -71,6 +71,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         sysUser_user.setPid("001");
         sysUser_user.setRid("001001");
         sysUser_user.setText("xx部员工");
+        sysUser_user.setxUrl("/login_page");
         sysUser_user.setRoles(sysRoles_user);
         userRepository.save(sysUser_user);
 
@@ -85,6 +86,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         sysUser_manager.setText("xx部经理");
         sysUser_manager.setRoles(sysRoles_manager);
         userRepository.save(sysUser_manager);
+
 
         alreadySetup = true;
     }

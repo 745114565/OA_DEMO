@@ -110,10 +110,4 @@ public class UserController {
         }
         return root;
     }
-
-    @RequestMapping(value = "/findoneRole",method = RequestMethod.GET)
-    public String findoneRole(ModelMap modelMap) {
-        modelMap.addAttribute("userList",userService.findoneRole());
-        return "ztree_page";
-    }
 }

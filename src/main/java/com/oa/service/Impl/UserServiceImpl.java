@@ -30,7 +30,7 @@ public class UserServiceImpl implements IUserService {
     SysRoleRepository roleRepository;
 
     @Override
-//    @Cacheable(value = "usercache",keyGenerator = "wiselyKeyGenerator")
+    @Cacheable(value = "usercache",keyGenerator = "wiselyKeyGenerator")
     public Iterable<SysUser> index(int page, int size) {
         Page<SysUser> users = repository.findAll(new PageRequest(page,size));
         List<SysUser> userList = new LinkedList<>();
@@ -94,4 +94,12 @@ public class UserServiceImpl implements IUserService {
         System.out.println("----------如果刷新不可见此消息则已经是从redis中加载出数据----------");
         return roleRepository.findOne(1L);
     }
+
+    @Cacheable(value = "rolecache2",keyGenerator = "wiselyKeyGenerator")
+    public SysRole findoneRole2() {
+        System.out.println("----------是否有调用到测试redis方法----------");
+        System.out.println("----------如果刷新不可见此消息则已经是从redis中加载出数据----------");
+        return roleRepository.findOne(2L);
+    }
+
 }

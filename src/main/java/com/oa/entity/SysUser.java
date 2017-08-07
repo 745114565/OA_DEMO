@@ -1,5 +1,6 @@
 package com.oa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.oa.excel.ExcelResources;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,7 +38,10 @@ public class SysUser extends BaseModel implements UserDetails {
     @Column
     private String text;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @Column
+    private String xUrl;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<SysUser> children;   //用于存储子节点
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
@@ -100,6 +104,14 @@ public class SysUser extends BaseModel implements UserDetails {
         this.text = text;
     }
 
+    public String getxUrl() {
+        return xUrl;
+    }
+
+    public void setxUrl(String xUrl) {
+        this.xUrl = xUrl;
+    }
+
     public List<SysUser> getChildren() {
         return children;
     }
@@ -156,6 +168,7 @@ public class SysUser extends BaseModel implements UserDetails {
                 ", rid='" + rid + '\'' +
                 ", pid='" + pid + '\'' +
                 ", text='" + text + '\'' +
+                ", xUrl='" + xUrl + '\'' +
                 ", children=" + children +
                 ", roles=" + roles +
                 '}';

@@ -71,15 +71,6 @@ public class MainController {
     }
 
     /**
-     * 返回ztree页面
-     * @return
-     */
-    @RequestMapping(value = "/ztree_page",method = RequestMethod.GET)
-    public String ztree_page() {
-        return "ztree_page";
-    }
-
-    /**
      * 测试页面
      * @return
      */
