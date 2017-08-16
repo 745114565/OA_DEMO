@@ -3,7 +3,6 @@ package com.example.demo;
 import com.oa.DemoApplication;
 import com.oa.entity.SysUser;
 import com.oa.excel.ExcelUtil;
-
 import com.oa.repository.SysUserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +28,7 @@ public class ExportExcelTest {
 
     @Autowired
     SysUserRepository repository;
+
 
     @Test
     public void test() throws Exception {
