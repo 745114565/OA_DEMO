@@ -5,10 +5,14 @@ import com.oa.entity.SysUser;
 import com.oa.repository.SysRoleRepository;
 import com.oa.repository.SysUserRepository;
 import com.oa.service.IUserService;
+import com.oa.tools.PageableTools;
+import com.oa.tools.SortDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -32,7 +36,12 @@ public class UserServiceImpl implements IUserService {
     @Override
     @Cacheable(value = "usercache",keyGenerator = "wiselyKeyGenerator")
     public Iterable<SysUser> index(int page, int size) {
-        Page<SysUser> users = repository.findAll(new PageRequest(page,size));
+
+        Sort.Order order =  new Sort.Order(Sort.Direction.DESC,"id");
+        Sort sort = new Sort(order);
+        Pageable pageable = new PageRequest(page,size,sort);
+
+        Page<SysUser> users = repository.findAll(pageable);
         List<SysUser> userList = new LinkedList<>();
         for(SysUser x:users){
             userList.add(x);
@@ -102,4 +111,28 @@ public class UserServiceImpl implements IUserService {
         return roleRepository.findOne(2L);
     }
 
+
+    //分页排序测试2,测试只传页码参数
+    public Iterable<SysUser> test2() {
+        Page<SysUser> datas = repository.findAll(PageableTools.basicPage(0));
+        return datas;
+    }
+
+    //分页排序测试3,测试传页码和条数
+    public Iterable<SysUser> test3() {
+        Page<SysUser> datas = repository.findAll(PageableTools.basicPage(1, 5));
+        return datas;
+    }
+
+    //分页排序测试4,测试传页码、条数和根据参数排序
+    public Iterable<SysUser> test4() {
+        Page<SysUser> datas = repository.findAll(PageableTools.basicPage(1, 5, new SortDto("id")));
+        return datas;
+    }
+
+    //分页排序测试5,测试传页码、条数和根据参数排序(ASC=升序,默认DESC降序)
+    public Iterable<SysUser> test5() {
+        Page<SysUser> datas = repository.findAll(PageableTools.basicPage(1, 5, new SortDto("ASC", "id")));
+        return datas;
+    }
 }
