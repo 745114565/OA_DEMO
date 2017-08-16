@@ -16,7 +16,7 @@
        
        自定义注解(例子在ExcelResources)
        
-       SpringData PagingAndSortingRepository 分页
+       SpringData PagingAndSortingRepository(tools封装了一下) 分页
        
        Ztree实现页面在test和test2(test是请求后台我生成的树,test2是zTree的Demo)
        
